@@ -11,11 +11,12 @@ import Table3 from "./Components/Table3";
 import Table4 from "./Components/Table4";
 import { useState } from "react";
 import Absences from "./Components/Absences";
+import NewMember from "./Components/NewMember";
 
 export default function App() {
   const [employees, setEmployees] = useState();
 
-  const [newMember, setNewMember] = useState<boolean>(false);
+  const [newMember, setNewMember] = useState<boolean>(true);
 
   const [absence, setAbsence] = useState<boolean>(false);
 
@@ -38,6 +39,11 @@ export default function App() {
       </Router>
 
       {absence ? <Absences /> : ""}
+      {newMember ? (
+        <NewMember newMember={newMember} setNewMember={setNewMember} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
