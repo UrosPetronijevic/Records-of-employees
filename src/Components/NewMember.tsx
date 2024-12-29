@@ -1,52 +1,19 @@
 import { useState } from "react";
+import { Employee } from "./Classes";
 
-class Employee {
-  kadrovskiBroj: number;
-  imeZaposlenog: string;
-  fondSati: number;
-  datumPocetka: string; // Use Date if you want stricter type checking
-  datumZavrsetka: string; // Use Date if you want stricter type checking
-  redovanRad: number;
-  godisnjiOdmor: number;
-  drzavniVerskiPraznik: number;
-  placenoOdsustvo: number;
-  bolovanjeDo30d: number;
-  bolovanje100: number;
-  bolovanjeNaTertFonda: number;
-  porodiljskoOdsustvo: number;
+type NewMemberProps = {
+  newMember: boolean;
+  setNewMember: React.Dispatch<React.SetStateAction<boolean>>;
+  employees: Employee[]; // Array of Employee objects
+  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>; // Function to update employees state
+};
 
-  constructor(
-    kadrovskiBroj: number,
-    imeZaposlenog: string,
-    fondSati: number,
-    datumPocetka: string,
-    datumZavrsetka: string,
-    redovanRad: number,
-    godisnjiOdmor: number,
-    drzavniVerskiPraznik: number,
-    placenoOdsustvo: number,
-    bolovanjeDo30d: number,
-    bolovanje100: number,
-    bolovanjeNaTertFonda: number,
-    porodiljskoOdsustvo: number
-  ) {
-    this.kadrovskiBroj = kadrovskiBroj;
-    this.imeZaposlenog = imeZaposlenog;
-    this.fondSati = fondSati;
-    this.datumPocetka = datumPocetka;
-    this.datumZavrsetka = datumZavrsetka;
-    this.redovanRad = redovanRad;
-    this.godisnjiOdmor = godisnjiOdmor;
-    this.drzavniVerskiPraznik = drzavniVerskiPraznik;
-    this.placenoOdsustvo = placenoOdsustvo;
-    this.bolovanjeDo30d = bolovanjeDo30d;
-    this.bolovanje100 = bolovanje100;
-    this.bolovanjeNaTertFonda = bolovanjeNaTertFonda;
-    this.porodiljskoOdsustvo = porodiljskoOdsustvo;
-  }
-}
-
-export default function NewMember() {
+export default function NewMember({
+  newMember,
+  setNewMember,
+  employees,
+  setEmployees,
+}: NewMemberProps) {
   const [name, setName] = useState<string>("");
 
   return (
@@ -55,7 +22,7 @@ export default function NewMember() {
         <button
           className="text-red-500 text-3xl w-fit self-end py-1 px-2 rounded-lg"
           type="button"
-          // onClick={() => setToggleForm((prev) => !prev)}
+          onClick={() => setNewMember((prev) => !prev)}
         >
           &#x2715;
         </button>
@@ -75,6 +42,15 @@ export default function NewMember() {
 
             <label className="flex gap-2 justify-start">
               PREZIME
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+
+            <label className="flex gap-2 justify-start">
+              SAP:
               <input
                 type="text"
                 value={name}

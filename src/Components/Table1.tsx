@@ -1,9 +1,22 @@
+import { Employee } from "./Classes";
+
 type Table1Props = {
-  absence: boolean;
   setAbsence: React.Dispatch<React.SetStateAction<boolean>>;
+  absence: boolean;
+  newMember: boolean;
+  setNewMember: React.Dispatch<React.SetStateAction<boolean>>;
+  employees: Employee[]; // Array of Employee objects
+  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>; // Function to update employees state
 };
 
-export default function Table1({ absence, setAbsence }: Table1Props) {
+export default function Table1({
+  absence,
+  setAbsence,
+  newMember,
+  setNewMember,
+  employees,
+  setEmployees,
+}: Table1Props) {
   const rows = 5;
   const columns = 13;
 
@@ -44,7 +57,9 @@ export default function Table1({ absence, setAbsence }: Table1Props) {
         <button
           type="submit"
           className="bg-slate-500 rounded-md text-2xl p-2"
-          onClick={() => {}}
+          onClick={() => {
+            setNewMember(!newMember);
+          }}
         >
           Novi clan
         </button>

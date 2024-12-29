@@ -12,9 +12,10 @@ import Table4 from "./Components/Table4";
 import { useState } from "react";
 import Absences from "./Components/Absences";
 import NewMember from "./Components/NewMember";
+import { Employee } from "./Components/Classes";
 
 export default function App() {
-  const [employees, setEmployees] = useState();
+  const [employees, setEmployees] = useState<Employee[]>([]);
 
   const [newMember, setNewMember] = useState<boolean>(true);
 
@@ -29,7 +30,16 @@ export default function App() {
             <Route path="/" element={<Navigate to="/table1" />} />
             <Route
               path="/table1"
-              element={<Table1 setAbsence={setAbsence} absence={absence} />}
+              element={
+                <Table1
+                  setAbsence={setAbsence}
+                  absence={absence}
+                  newMember={newMember}
+                  setNewMember={setNewMember}
+                  employees={employees}
+                  setEmployees={setEmployees}
+                />
+              }
             />
             <Route path="/table2" element={<Table2 />} />
             <Route path="/table3" element={<Table3 />} />
@@ -38,11 +48,14 @@ export default function App() {
         </main>
       </Router>
 
-      {absence ? <Absences /> : ""}
-      {newMember ? (
-        <NewMember newMember={newMember} setNewMember={setNewMember} />
-      ) : (
-        ""
+      {absence && <Absences />}
+      {newMember && (
+        <NewMember
+          newMember={newMember}
+          setNewMember={setNewMember}
+          employees={employees}
+          setEmployees={setEmployees}
+        />
       )}
     </div>
   );
