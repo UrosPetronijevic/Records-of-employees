@@ -43,59 +43,78 @@ export default function NewMember({
   };
 
   return (
-    <div className="absolute inset-0 bg-slate-500/90 flex justify-center items-center flex-col p-4 backdrop-blur-sm">
-      <div className="w-[35%] h-[85%] bg-gradient-to-br from-blue-700 to-slate-800 flex flex-col p-1 items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg">
+    <div className="absolute inset-0 bg-slate-700/90 flex justify-center items-center flex-col p-4 backdrop-blur-sm">
+      <div className="w-[35%] bg-white flex flex-col p-1 items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg">
         <button
-          className="text-red-500 text-3xl w-fit self-end py-1 px-2 rounded-lg"
+          className="text-slate-700 text-3xl w-fit self-end py-1 px-2 rounded-lg"
           type="button"
           onClick={() => setNewMember(false)}
         >
           &#x2715;
         </button>
 
-        <h1 className="text-5xl font-bold text-white">FORM</h1>
+        <h1 className="text-5xl font-thin text-slate-700">FORM</h1>
 
-        <form onSubmit={handleFormSubmit} className="h-max w-full">
-          <label className="flex gap-2 justify-start">
-            IME:
-            <input
-              type="text"
-              value={employee.imeZaposlenog}
-              onChange={(e) =>
-                handleInputChange("imeZaposlenog", e.target.value)
-              }
-            />
-          </label>
-
-          <label className="flex gap-2 justify-start">
-            PREZIME:
-            <input
-              type="text"
-              value={employee.prezimeZaposlenog}
-              onChange={(e) =>
-                handleInputChange("prezimeZaposlenog", e.target.value)
-              }
-            />
-          </label>
-
-          <label className="flex gap-2 justify-start">
-            SAP:
-            <input
-              type="number"
-              value={employee.kadrovskiBroj}
-              onChange={(e) =>
-                handleInputChange("kadrovskiBroj", parseInt(e.target.value))
-              }
-            />
-          </label>
-
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
+        <div className="h-max w-full flex flex-col-reverse p-4">
+          <form
+            onSubmit={handleFormSubmit}
+            className=" w-full flex flex-col h-full justify-between p-8 text-slate-700"
           >
-            Submit
-          </button>
-        </form>
+            <div className="flex flex-col justify-center h-max gap-10 text-[1rem] w-full">
+              <label className="flex gap-1 flex-col">
+                <input
+                  placeholder="Ime"
+                  type="text"
+                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
+                  value={employee.imeZaposlenog}
+                  onChange={(e) =>
+                    handleInputChange("imeZaposlenog", e.target.value)
+                  }
+                />
+              </label>
+
+              <label className="flex gap-1 flex-col">
+                <input
+                  placeholder="Prezime"
+                  type="text"
+                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
+                  value={employee.prezimeZaposlenog}
+                  onChange={(e) =>
+                    handleInputChange("prezimeZaposlenog", e.target.value)
+                  }
+                />
+              </label>
+
+              <label className="flex gap-1 flex-col">
+                <input
+                  placeholder="Sab"
+                  type="number"
+                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
+                  value={employee.kadrovskiBroj}
+                  onChange={(e) =>
+                    handleInputChange("kadrovskiBroj", parseInt(e.target.value))
+                  }
+                />
+              </label>
+
+              <div className="flex justify-between mt-4 text-white">
+                <button type="submit" className="p-4 bg-red-500 rounded-md">
+                  Dodatno Opt.
+                </button>
+                <button type="submit" className="p-4 bg-red-500 rounded-md">
+                  Pripravnost
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-slate-800 text-white px-8 py-4 mt-10 rounded-[.5rem]"
+            >
+              Zavrsi
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
