@@ -17,12 +17,12 @@ import { Employee } from "./Components/Classes";
 export default function App() {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const [newMember, setNewMember] = useState<boolean>(true);
+  const [newMember, setNewMember] = useState<boolean>(false);
 
   const [absence, setAbsence] = useState<boolean>(false);
 
   return (
-    <div className=" font-bold text-cyan-300">
+    <div className=" font-bold text-slate-700">
       <Router>
         <Navigation />
         <main className="p-8">

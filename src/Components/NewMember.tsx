@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Employee } from "./Classes";
+import Label from "./Label";
 
 type NewMemberProps = {
   newMember: boolean;
@@ -15,15 +16,15 @@ export default function NewMember({
   setEmployees,
 }: NewMemberProps) {
   const [employee, setEmployee] = useState<Employee>(
-    new Employee(0, "", "", 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0)
+    new Employee("", "", "", 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0)
   );
 
-  const handleInputChange = (field: keyof Employee, value: any) => {
-    setEmployee((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  // const handleInputChange = (field: keyof Employee, value: any) => {
+  //   setEmployee((prev) => ({
+  //     ...prev,
+  //     [field]: value,
+  //   }));
+  // };
 
   // const handleFormSubmit = (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -44,7 +45,7 @@ export default function NewMember({
 
   return (
     <div className="absolute inset-0 bg-slate-700/90 flex justify-center items-center flex-col p-4 backdrop-blur-sm">
-      <div className="w-[35%] bg-white flex flex-col p-1 items-center shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] rounded-lg">
+      <div className="w-[35%] bg-white flex flex-col p-1 items-center shadow-[4.0px_4.0px_4.0px_4.0px_rgba(0,0,0,0.18)] rounded-lg backdrop-blur-sm">
         <button
           className="text-slate-700 text-3xl w-fit self-end py-1 px-2 rounded-lg"
           type="button"
@@ -58,36 +59,36 @@ export default function NewMember({
         <div className="h-max w-full flex flex-col-reverse p-4">
           <form
             onSubmit={handleFormSubmit}
-            className=" w-full flex flex-col h-full justify-between p-8 text-slate-700"
+            className=" w-full flex flex-col h-full justify-between p-8 text-slate-700 "
           >
             <div className="flex flex-col justify-center h-max gap-10 text-[1rem] w-full">
-              <label className="flex gap-1 flex-col">
-                <input
-                  placeholder="Ime"
-                  type="text"
-                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
-                  value={employee.imeZaposlenog}
-                  onChange={(e) =>
-                    handleInputChange("imeZaposlenog", e.target.value)
-                  }
-                />
-              </label>
+              <Label
+                placeholder={"Ime"}
+                type={"text"}
+                value={employee.imeZaposlenog}
+                setEmployee={setEmployee}
+                keyOf={"imeZaposlenog"}
+              />
 
-              <label className="flex gap-1 flex-col">
-                <input
-                  placeholder="Prezime"
-                  type="text"
-                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
-                  value={employee.prezimeZaposlenog}
-                  onChange={(e) =>
-                    handleInputChange("prezimeZaposlenog", e.target.value)
-                  }
-                />
-              </label>
+              <Label
+                placeholder={"Prezime"}
+                type={"text"}
+                value={employee.prezimeZaposlenog}
+                setEmployee={setEmployee}
+                keyOf={"prezimeZaposlenog"}
+              />
 
-              <label className="flex gap-1 flex-col">
+              <Label
+                placeholder={"Sab br."}
+                type={"number"}
+                value={employee.kadrovskiBroj}
+                setEmployee={setEmployee}
+                keyOf={"kadrovskiBroj"}
+              />
+
+              {/* <label className="flex gap-1 flex-col">
                 <input
-                  placeholder="Sab"
+                  placeholder="Sab br."
                   type="number"
                   className="rounded-[.3rem] h-10 border-slate-300 border px-2"
                   value={employee.kadrovskiBroj}
@@ -95,13 +96,13 @@ export default function NewMember({
                     handleInputChange("kadrovskiBroj", parseInt(e.target.value))
                   }
                 />
-              </label>
+              </label> */}
 
               <div className="flex justify-between mt-4 text-white">
-                <button type="submit" className="p-4 bg-red-500 rounded-md">
+                <button type="submit" className="p-4 bg-indigo-500 rounded-md">
                   Dodatno Opt.
                 </button>
-                <button type="submit" className="p-4 bg-red-500 rounded-md">
+                <button type="submit" className="p-4 bg-indigo-500 rounded-md">
                   Pripravnost
                 </button>
               </div>

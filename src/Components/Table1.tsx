@@ -97,7 +97,7 @@ export default function Table1({
       <div className="flex bg-lime-200 flex-row-reverse">
         <button
           type="button"
-          className="bg-slate-500 rounded-md text-2xl p-2"
+          className="bg-indigo-400 text-white rounded-md text-2xl p-2"
           onClick={() => setNewMember(!newMember)}
         >
           Novi clan

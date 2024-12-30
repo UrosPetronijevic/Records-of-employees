@@ -15,7 +15,7 @@ export class Employee {
   porodiljskoOdsustvo: number;
 
   constructor(
-    kadrovskiBroj: number,
+    kadrovskiBroj: number | any,
     imeZaposlenog: string,
     prezimeZaposlenog: string,
     fondSati: number,
