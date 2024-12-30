@@ -17,49 +17,88 @@ export default function Table1({
   employees,
   setEmployees,
 }: Table1Props) {
-  const rows = 5;
-  const columns = 13;
+  const columns: string[] = [
+    "Kadrovski broj",
+    "Ime zapos./kandidata",
+    "Fond sati",
+    "Datum početka",
+    "Datum završetka",
+    "Redovan rad",
+    "Godišnji odmor",
+    "Državni/verski praznik",
+    "Plaćeno odsustvo",
+    "Bolovanje do 30d 65%",
+    "Bolovanje 100%",
+    "Bolovanje na teret Fonda",
+    "Porodiljsko odsustvo",
+  ];
 
-  const tableData = Array.from({ length: rows }, (_, rowIndex) =>
-    Array.from({ length: columns }, (_, colIndex) => ``)
-  );
   return (
     <div>
       <table className="table-auto border-collapse border border-gray-300 w-full">
         <thead>
           <tr>
-            {Array.from({ length: columns }, (_, colIndex) => (
+            {columns.map((column, colIndex) => (
               <th
                 key={`header-${colIndex}`}
                 className="border border-gray-300 px-4 py-2 bg-gray-100"
               >
-                Column {colIndex + 1}
+                {column}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {tableData.map((row, rowIndex) => (
+          {employees.map((employee, rowIndex) => (
             <tr key={`row-${rowIndex}`}>
-              {row.map((cell, colIndex) => (
-                <td
-                  key={`cell-${rowIndex}-${colIndex}`}
-                  className="border border-gray-300 px-4 py-2"
-                >
-                  {cell}
-                </td>
-              ))}
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.kadrovskiBroj}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.imeZaposlenog}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.fondSati}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.datumPocetka}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.datumZavrsetka}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.redovanRad}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.godisnjiOdmor}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.drzavniVerskiPraznik}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.placenoOdsustvo}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.bolovanjeDo30d}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.bolovanje100}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.bolovanjeNaTertFonda}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {employee.porodiljskoOdsustvo}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
       <div className="flex bg-lime-200 flex-row-reverse">
         <button
-          type="submit"
+          type="button"
           className="bg-slate-500 rounded-md text-2xl p-2"
-          onClick={() => {
-            setNewMember(!newMember);
-          }}
+          onClick={() => setNewMember(!newMember)}
         >
           Novi clan
         </button>

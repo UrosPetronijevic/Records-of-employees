@@ -1,6 +1,7 @@
 export class Employee {
   kadrovskiBroj: number;
   imeZaposlenog: string;
+  prezimeZaposlenog: string;
   fondSati: number;
   datumPocetka: string; // Use Date if you want stricter type checking
   datumZavrsetka: string; // Use Date if you want stricter type checking
@@ -16,6 +17,7 @@ export class Employee {
   constructor(
     kadrovskiBroj: number,
     imeZaposlenog: string,
+    prezimeZaposlenog: string,
     fondSati: number,
     datumPocetka: string,
     datumZavrsetka: string,
@@ -30,6 +32,7 @@ export class Employee {
   ) {
     this.kadrovskiBroj = kadrovskiBroj;
     this.imeZaposlenog = imeZaposlenog;
+    this.prezimeZaposlenog = prezimeZaposlenog;
     this.fondSati = fondSati;
     this.datumPocetka = datumPocetka;
     this.datumZavrsetka = datumZavrsetka;
