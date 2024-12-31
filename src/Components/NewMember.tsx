@@ -5,8 +5,8 @@ import Label from "./Label";
 type NewMemberProps = {
   newMember: boolean;
   setNewMember: React.Dispatch<React.SetStateAction<boolean>>;
-  employees: Employee[]; // Array of Employee objects
-  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>; // Function to update employees state
+  employees: Employee[];
+  setEmployees: React.Dispatch<React.SetStateAction<Employee[]>>;
 };
 
 export default function NewMember({
@@ -15,33 +15,65 @@ export default function NewMember({
   employees,
   setEmployees,
 }: NewMemberProps) {
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+
+  function calculateWorkingHours(
+    year: number,
+    month: number,
+    hoursPerDay: number = 8
+  ): number {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+
+    let totalWorkingHours = 0;
+
+    for (let day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
+      const dayOfWeek = day.getDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        // Exclude Sunday (0) and Saturday (6)
+        totalWorkingHours += hoursPerDay;
+      }
+    }
+
+    return totalWorkingHours;
+  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const [employee, setEmployee] = useState<Employee>(
-    new Employee("", "", "", 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0)
+    new Employee(
+      "",
+      "",
+      "",
+      calculateWorkingHours(year, month),
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    )
   );
 
-  // const handleInputChange = (field: keyof Employee, value: any) => {
-  //   setEmployee((prev) => ({
-  //     ...prev,
-  //     [field]: value,
-  //   }));
-  // };
-
-  // const handleFormSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setEmployees((prev) => [...prev, employee]);
-  //   setNewMember(false);
-  // };
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Push the new employee object into the employees array
+    // Add new employee to the list
     setEmployees((prev) => [...prev, employee]);
 
-    // Clear the form and close the modal
-    setEmployee(new Employee(0, "", "", 0, "", "", 0, 0, 0, 0, 0, 0, 0, 0));
+    // Reset form and close modal
+    setEmployee(new Employee(0, "", "", 0, 0, 0, 0, 0, 0, 0, 0, 0));
     setNewMember(false);
   };
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div className="absolute inset-0 bg-slate-700/90 flex justify-center items-center flex-col p-4 backdrop-blur-sm">
@@ -59,50 +91,38 @@ export default function NewMember({
         <div className="h-max w-full flex flex-col-reverse p-4">
           <form
             onSubmit={handleFormSubmit}
-            className=" w-full flex flex-col h-full justify-between p-8 text-slate-700 "
+            className="w-full flex flex-col h-full justify-between p-8 text-slate-700"
           >
             <div className="flex flex-col justify-center h-max gap-10 text-[1rem] w-full">
               <Label
-                placeholder={"Ime"}
-                type={"text"}
+                placeholder="Ime"
+                type="text"
                 value={employee.imeZaposlenog}
                 setEmployee={setEmployee}
-                keyOf={"imeZaposlenog"}
+                keyOf="imeZaposlenog"
               />
 
               <Label
-                placeholder={"Prezime"}
-                type={"text"}
+                placeholder="Prezime"
+                type="text"
                 value={employee.prezimeZaposlenog}
                 setEmployee={setEmployee}
-                keyOf={"prezimeZaposlenog"}
+                keyOf="prezimeZaposlenog"
               />
 
               <Label
-                placeholder={"Sab br."}
-                type={"number"}
+                placeholder="Sab br."
+                type="number"
                 value={employee.kadrovskiBroj}
                 setEmployee={setEmployee}
-                keyOf={"kadrovskiBroj"}
+                keyOf="kadrovskiBroj"
               />
 
-              {/* <label className="flex gap-1 flex-col">
-                <input
-                  placeholder="Sab br."
-                  type="number"
-                  className="rounded-[.3rem] h-10 border-slate-300 border px-2"
-                  value={employee.kadrovskiBroj}
-                  onChange={(e) =>
-                    handleInputChange("kadrovskiBroj", parseInt(e.target.value))
-                  }
-                />
-              </label> */}
-
               <div className="flex justify-between mt-4 text-white">
-                <button type="submit" className="p-4 bg-indigo-500 rounded-md">
+                <button type="button" className="p-4 bg-indigo-500 rounded-md">
                   Dodatno Opt.
                 </button>
-                <button type="submit" className="p-4 bg-indigo-500 rounded-md">
+                <button type="button" className="p-4 bg-indigo-500 rounded-md">
                   Pripravnost
                 </button>
               </div>

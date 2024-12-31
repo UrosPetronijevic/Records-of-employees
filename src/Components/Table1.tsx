@@ -17,6 +17,8 @@ export default function Table1({
   employees,
   setEmployees,
 }: Table1Props) {
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const columns: string[] = [
     "Kadrovski broj",
     "Ime zapos./kandidata",
@@ -32,6 +34,8 @@ export default function Table1({
     "Bolovanje na teret Fonda",
     "Porodiljsko odsustvo",
   ];
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div>
@@ -55,16 +59,16 @@ export default function Table1({
                 {employee.kadrovskiBroj}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {employee.imeZaposlenog}
+                {employee.imeZaposlenog} {employee.prezimeZaposlenog}
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 {employee.fondSati}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {employee.datumPocetka}
+                {employee.datumPocetka.toLocaleDateString()}
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                {employee.datumZavrsetka}
+                {employee.datumZavrsetka.toLocaleDateString()}
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 {employee.redovanRad}

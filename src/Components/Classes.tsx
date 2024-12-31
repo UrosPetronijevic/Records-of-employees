@@ -3,8 +3,8 @@ export class Employee {
   imeZaposlenog: string;
   prezimeZaposlenog: string;
   fondSati: number;
-  datumPocetka: string; // Use Date if you want stricter type checking
-  datumZavrsetka: string; // Use Date if you want stricter type checking
+  datumPocetka: Date;
+  datumZavrsetka: Date;
   redovanRad: number;
   godisnjiOdmor: number;
   drzavniVerskiPraznik: number;
@@ -19,8 +19,6 @@ export class Employee {
     imeZaposlenog: string,
     prezimeZaposlenog: string,
     fondSati: number,
-    datumPocetka: string,
-    datumZavrsetka: string,
     redovanRad: number,
     godisnjiOdmor: number,
     drzavniVerskiPraznik: number,
@@ -30,12 +28,16 @@ export class Employee {
     bolovanjeNaTertFonda: number,
     porodiljskoOdsustvo: number
   ) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+
     this.kadrovskiBroj = kadrovskiBroj;
     this.imeZaposlenog = imeZaposlenog;
     this.prezimeZaposlenog = prezimeZaposlenog;
     this.fondSati = fondSati;
-    this.datumPocetka = datumPocetka;
-    this.datumZavrsetka = datumZavrsetka;
+    this.datumPocetka = new Date(year, month, 1);
+    this.datumZavrsetka = new Date(year, month + 1, 0);
     this.redovanRad = redovanRad;
     this.godisnjiOdmor = godisnjiOdmor;
     this.drzavniVerskiPraznik = drzavniVerskiPraznik;
