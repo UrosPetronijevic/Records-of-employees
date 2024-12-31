@@ -5,12 +5,12 @@ type AbsenceProps = {
 
 export default function Absences({ setAbsence, absence }: AbsenceProps) {
   return (
-    <div className="w-[30%] bg-red-300 p-8 flex flex-col gap-10">
-      <h1 className="text-3xl font-bold self-center">Odsustva</h1>
+    <div className="w-[30%] bg-purple-950/70 p-8 flex flex-col gap-10 rounded-lg backdrop-blur-sm">
+      <h1 className="text-5xl font-bold self-center">Odsustva</h1>
 
-      <ol className="h-full w-full flex flex-col text-3xl justify-center gap-5">
+      <ol className="h-full w-full flex flex-col text-2xl justify-center gap-5">
         <li
-          className="flex items-center gap-2"
+          className="flex justify-between bg-purple-950/30 p-4 rounded-md shadow-md"
           // onClick={() => {
           //   setGodisnjiOdmorArr(toggledDays);
           //   setToggledDays(new Set());

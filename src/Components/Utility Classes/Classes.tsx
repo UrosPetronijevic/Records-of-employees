@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export class Employee {
   kadrovskiBroj: number;
   imeZaposlenog: string;
@@ -48,3 +50,17 @@ export class Employee {
     this.porodiljskoOdsustvo = porodiljskoOdsustvo;
   }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// export class AbsenceType {
+//   type: string;
+
+//   constructor(type: string) {
+//     this.type = type;
+//   }
+// }
+
+// const [type, setType] = useState<AbsenceType>(
+//   new AbsenceType("Godisnji Odmor")
+// );

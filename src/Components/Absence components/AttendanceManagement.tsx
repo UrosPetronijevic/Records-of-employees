@@ -12,7 +12,7 @@ export default function AttendanceManagement({
 }: AttendanceManagementProps) {
   return (
     <div
-      className="absolute inset-0 bg-slate-700/90 text-white flex flex-col p-8"
+      className="absolute inset-0 bg-white text-white flex flex-col p-8 justify-center"
       onClick={() => {
         setAbsence(!absence);
       }}
