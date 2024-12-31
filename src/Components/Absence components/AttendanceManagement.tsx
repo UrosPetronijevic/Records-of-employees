@@ -1,14 +1,19 @@
+import { AbsenceType } from "../Utility Classes/Classes";
 import Absences from "./Absences";
 import Calendar from "./Calendar";
 
 type AttendanceManagementProps = {
   setAbsence: React.Dispatch<React.SetStateAction<boolean>>;
   absence: boolean;
+  absenceTypes: AbsenceType[];
+  setAbsenceTypes: React.Dispatch<React.SetStateAction<AbsenceType[]>>;
 };
 
 export default function AttendanceManagement({
   setAbsence,
   absence,
+  absenceTypes,
+  setAbsenceTypes,
 }: AttendanceManagementProps) {
   return (
     <div
@@ -19,7 +24,12 @@ export default function AttendanceManagement({
     >
       <div className="flex gap-4">
         <Calendar />
-        <Absences setAbsence={setAbsence} absence={absence} />
+        <Absences
+          setAbsence={setAbsence}
+          absence={absence}
+          absenceTypes={absenceTypes}
+          setAbsenceTypes={setAbsenceTypes}
+        />
       </div>
     </div>
   );

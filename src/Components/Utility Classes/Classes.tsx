@@ -53,14 +53,18 @@ export class Employee {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// export class AbsenceType {
-//   type: string;
+export class AbsenceType {
+  type: string;
+  setFunc: React.Dispatch<React.SetStateAction<Set<number>>>;
+  color: string;
 
-//   constructor(type: string) {
-//     this.type = type;
-//   }
-// }
-
-// const [type, setType] = useState<AbsenceType>(
-//   new AbsenceType("Godisnji Odmor")
-// );
+  constructor(
+    type: string,
+    setFunc: React.Dispatch<React.SetStateAction<Set<number>>>,
+    color: string
+  ) {
+    this.type = type;
+    this.setFunc = setFunc;
+    this.color = color;
+  }
+}

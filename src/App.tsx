@@ -11,10 +11,54 @@ import Table3 from "./Components/Table3";
 import Table4 from "./Components/Table4";
 import { useState } from "react";
 import NewMember from "./Components/NewMember components/NewMember";
-import { Employee } from "./Components/Utility Classes/Classes";
+import { AbsenceType, Employee } from "./Components/Utility Classes/Classes";
 import AttendanceManagement from "./Components/Absence components/AttendanceManagement";
 
 export default function App() {
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // Individual state sets
+  const [godisnjiOdmorArr, setGodisnjiOdmorArr] = useState<Set<number>>(
+    new Set()
+  );
+
+  const [placenoOdsustvo, setPlacenoOdsustvo] = useState<Set<number>>(
+    new Set()
+  );
+
+  const [bolovanjeArr, setBolovanjeArr] = useState<Set<number>>(new Set());
+
+  const [drzavniPraznikArr, setDrzavniPraznikArr] = useState<Set<number>>(
+    new Set()
+  );
+
+  const [verskiPraznikArr, setVerskiPraznikArr] = useState<Set<number>>(
+    new Set()
+  );
+
+  const [slavaArr, setSlavaArr] = useState<Set<number>>(new Set());
+
+  // AbsenceType array
+  const [absenceTypes, setAbsenceTypes] = useState<AbsenceType[]>([
+    new AbsenceType("Godisnji Odmor", setGodisnjiOdmorArr, "bg-green-500"),
+    new AbsenceType("Placeno odsustvo", setPlacenoOdsustvo, "bg-blue-500"),
+    new AbsenceType("Bolovanje", setBolovanjeArr, "bg-yellow-500"),
+    new AbsenceType("Drzavni praznik", setDrzavniPraznikArr, "bg-red-500"),
+    new AbsenceType("Verski praznik", setVerskiPraznikArr, "bg-purple-500"),
+    new AbsenceType("Slava", setSlavaArr, "bg-orange-500"),
+  ]);
+
+  // console.log(
+  //   godisnjiOdmorArr,
+  //   placenoOdsustvo,
+  //   bolovanjeArr,
+  //   drzavniPraznikArr,
+  //   verskiPraznikArr,
+  //   slavaArr
+  // );
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   const [employees, setEmployees] = useState<Employee[]>([]);
 
   const [newMember, setNewMember] = useState<boolean>(false);
@@ -49,7 +93,12 @@ export default function App() {
       </Router>
 
       {absence && (
-        <AttendanceManagement setAbsence={setAbsence} absence={absence} />
+        <AttendanceManagement
+          setAbsence={setAbsence}
+          absence={absence}
+          absenceTypes={absenceTypes}
+          setAbsenceTypes={setAbsenceTypes}
+        />
       )}
       {newMember && (
         <NewMember
