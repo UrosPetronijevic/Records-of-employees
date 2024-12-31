@@ -1,4 +1,4 @@
-import { Employee } from "./Classes";
+import { Employee } from "./Utility Classes/Classes";
 
 type Table1Props = {
   setAbsence: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,8 +15,8 @@ export default function Table1({
   newMember,
   setNewMember,
   employees,
-  setEmployees,
-}: Table1Props) {
+}: // setEmployees,
+Table1Props) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const columns: string[] = [
@@ -58,7 +58,12 @@ export default function Table1({
               <td className="border border-gray-300 px-4 py-2">
                 {employee.kadrovskiBroj}
               </td>
-              <td className="border border-gray-300 px-4 py-2">
+              <td
+                className="border border-gray-300 px-4 py-2"
+                onClick={() => {
+                  setAbsence(!absence);
+                }}
+              >
                 {employee.imeZaposlenog} {employee.prezimeZaposlenog}
               </td>
               <td className="border border-gray-300 px-4 py-2">

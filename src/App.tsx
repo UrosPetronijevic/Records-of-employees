@@ -10,9 +10,9 @@ import Table2 from "./Components/Table2";
 import Table3 from "./Components/Table3";
 import Table4 from "./Components/Table4";
 import { useState } from "react";
-import Absences from "./Components/Absences";
-import NewMember from "./Components/NewMember";
-import { Employee } from "./Components/Classes";
+import NewMember from "./Components/NewMember components/NewMember";
+import { Employee } from "./Components/Utility Classes/Classes";
+import AttendanceManagement from "./Components/Absence components/AttendanceManagement";
 
 export default function App() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -48,7 +48,9 @@ export default function App() {
         </main>
       </Router>
 
-      {absence && <Absences />}
+      {absence && (
+        <AttendanceManagement setAbsence={setAbsence} absence={absence} />
+      )}
       {newMember && (
         <NewMember
           newMember={newMember}

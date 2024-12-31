@@ -1,4 +1,4 @@
-import { Employee } from "./Classes";
+import { Employee } from "../Utility Classes/Classes";
 
 type LabelProps<T extends keyof Employee> = {
   placeholder: string;

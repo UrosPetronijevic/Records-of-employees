@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Employee } from "./Classes";
+import { Employee } from "../Utility Classes/Classes";
 import Label from "./Label";
 
 type NewMemberProps = {
@@ -10,9 +10,9 @@ type NewMemberProps = {
 };
 
 export default function NewMember({
-  newMember,
+  // newMember,
   setNewMember,
-  employees,
+  // employees,
   setEmployees,
 }: NewMemberProps) {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
