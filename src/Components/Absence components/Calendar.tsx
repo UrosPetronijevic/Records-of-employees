@@ -1,6 +1,6 @@
 type CalendarProps = {
-  selectedDays: number[] | undefined;
-  setSelectedDays: React.Dispatch<React.SetStateAction<number[] | undefined>>;
+  selectedDays: number[];
+  setSelectedDays: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export default function Calendar({

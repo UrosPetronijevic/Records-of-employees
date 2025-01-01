@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export class Employee {
   kadrovskiBroj: number;
   imeZaposlenog: string;

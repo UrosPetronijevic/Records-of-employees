@@ -5,6 +5,8 @@ type AbsenceProps = {
   absence: boolean;
   absenceTypes: AbsenceType[];
   setAbsenceTypes: React.Dispatch<React.SetStateAction<AbsenceType[]>>;
+  selectedDays: number[];
+  setSelectedDays: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export default function Absences({
@@ -12,11 +14,21 @@ export default function Absences({
   absence,
   absenceTypes,
   setAbsenceTypes,
+  selectedDays,
+  setSelectedDays,
 }: AbsenceProps) {
-  const handleAbsenceClick = (type: AbsenceType) => {
-    type.setFunc((prev) => new Set());
-  };
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  const handleAbsenceClick = (type: AbsenceType) => {
+    type.setFunc((prev) => {
+      const updatedSet = new Set(prev); // Create a copy of the current Set
+      selectedDays.forEach((day) => updatedSet.add(day)); // Add numbers from selectedDays to the Set
+
+      setSelectedDays([]);
+
+      return updatedSet; // Return the updated Set
+    });
+  };
   return (
     <div className="w-[35%] bg-purple-950/70 p-8 flex flex-col gap-10 rounded-lg backdrop-blur-sm">
       <h1 className="text-5xl font-bold self-center">Odsustva</h1>
