@@ -22,7 +22,7 @@ export default function AttendanceManagement({
         setAbsence(!absence);
       }}
     >
-      <div className="flex gap-4">
+      <div className="flex justify-between">
         <Calendar />
         <Absences
           setAbsence={setAbsence}
