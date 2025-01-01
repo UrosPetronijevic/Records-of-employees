@@ -1,4 +1,12 @@
-export default function Calendar() {
+type CalendarProps = {
+  selectedDays: number[] | undefined;
+  setSelectedDays: React.Dispatch<React.SetStateAction<number[] | undefined>>;
+};
+
+export default function Calendar({
+  selectedDays,
+  setSelectedDays,
+}: CalendarProps) {
   // Get the current date
   const today = new Date();
   const thisMonth = today.getMonth();
@@ -10,8 +18,21 @@ export default function Calendar() {
   // Create an array of days for the current month
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
+  const handleDayClick = (day: number) => {
+    setSelectedDays(
+      (prev) =>
+        prev?.includes(day)
+          ? prev.filter((d) => d !== day) // Remove the day if it's already selected
+          : prev
+          ? [...prev, day] // Add the day if it's not already selected
+          : [day] // Initialize the array if it's undefined
+    );
+  };
+
+  console.log(selectedDays);
+
   return (
-    <div className="w-[50%] bg-red-300 flex flex-col justify-between p-8 rounded-md cursor-pointer">
+    <div className="w-[50%] text-slate-500 bg-slate-50 shadow-md flex flex-col justify-between p-8 rounded-md cursor-pointer border border-slate-500">
       <h1 className="self-center text-5xl">
         {today.toLocaleString("default", { month: "long" })} {thisYear}
       </h1>
@@ -19,7 +40,14 @@ export default function Calendar() {
         {daysArray.map((day) => (
           <div
             key={day}
-            className="flex p-4 bg-yellow-300 justify-center items-center border border-slate-300"
+            className={`flex p-4 shadow-md  justify-center items-center border border-slate-300 rounded-sm ${
+              selectedDays?.includes(day)
+                ? "bg-slate-700 text-white"
+                : "bg-slate-100"
+            }`}
+            onClick={() => {
+              handleDayClick(day);
+            }}
           >
             {day}
           </div>

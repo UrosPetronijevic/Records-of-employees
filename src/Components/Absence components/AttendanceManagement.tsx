@@ -7,6 +7,8 @@ type AttendanceManagementProps = {
   absence: boolean;
   absenceTypes: AbsenceType[];
   setAbsenceTypes: React.Dispatch<React.SetStateAction<AbsenceType[]>>;
+  selectedDays: number[] | undefined;
+  setSelectedDays: React.Dispatch<React.SetStateAction<number[] | undefined>>;
 };
 
 export default function AttendanceManagement({
@@ -14,16 +16,16 @@ export default function AttendanceManagement({
   absence,
   absenceTypes,
   setAbsenceTypes,
+  selectedDays,
+  setSelectedDays,
 }: AttendanceManagementProps) {
   return (
-    <div
-      className="absolute inset-0 bg-white text-white flex flex-col p-8 justify-center"
-      onClick={() => {
-        setAbsence(!absence);
-      }}
-    >
+    <div className="absolute inset-0 bg-white/90 text-white flex flex-col p-8 justify-center">
       <div className="flex justify-between">
-        <Calendar />
+        <Calendar
+          selectedDays={selectedDays}
+          setSelectedDays={setSelectedDays}
+        />
         <Absences
           setAbsence={setAbsence}
           absence={absence}

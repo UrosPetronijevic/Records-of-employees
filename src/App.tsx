@@ -17,6 +17,10 @@ import AttendanceManagement from "./Components/Absence components/AttendanceMana
 export default function App() {
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  const [selectedDays, setSelectedDays] = useState<Set<number>>();
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   // Individual state sets
   const [godisnjiOdmorArr, setGodisnjiOdmorArr] = useState<Set<number>>(
     new Set()
@@ -47,15 +51,6 @@ export default function App() {
     new AbsenceType("Verski praznik", setVerskiPraznikArr, "bg-purple-500"),
     new AbsenceType("Slava", setSlavaArr, "bg-orange-500"),
   ]);
-
-  // console.log(
-  //   godisnjiOdmorArr,
-  //   placenoOdsustvo,
-  //   bolovanjeArr,
-  //   drzavniPraznikArr,
-  //   verskiPraznikArr,
-  //   slavaArr
-  // );
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -98,6 +93,8 @@ export default function App() {
           absence={absence}
           absenceTypes={absenceTypes}
           setAbsenceTypes={setAbsenceTypes}
+          selectedDays={selectedDays}
+          setSelectedDays={setSelectedDays}
         />
       )}
       {newMember && (
