@@ -1,11 +1,18 @@
+import { useState } from "react";
+import { AbsenceType } from "../Utility Classes/Classes";
+
 type CalendarProps = {
   selectedDays: number[];
   setSelectedDays: React.Dispatch<React.SetStateAction<number[]>>;
+  absenceTypes: AbsenceType[];
+  setAbsenceTypes: React.Dispatch<React.SetStateAction<AbsenceType[]>>;
 };
 
 export default function Calendar({
   selectedDays,
   setSelectedDays,
+  absenceTypes,
+  setAbsenceTypes,
 }: CalendarProps) {
   // Get the current date
   const today = new Date();
@@ -18,6 +25,8 @@ export default function Calendar({
   // Create an array of days for the current month
   const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
+  //////////////////////////////////////////////////////////////////////////////////////////
+
   const handleDayClick = (day: number) => {
     setSelectedDays(
       (prev) =>
@@ -28,8 +37,6 @@ export default function Calendar({
           : [day] // Initialize the array if it's undefined
     );
   };
-
-  console.log(selectedDays);
 
   return (
     <div className="w-[50%] text-slate-500 bg-slate-50 shadow-md flex flex-col justify-between p-8 rounded-md cursor-pointer border border-slate-500">
@@ -43,8 +50,8 @@ export default function Calendar({
             className={`flex p-4 shadow-md  justify-center items-center border border-slate-300 rounded-sm ${
               selectedDays?.includes(day)
                 ? "bg-slate-700 text-white"
-                : "bg-slate-100"
-            }`}
+                : "bg-white"
+            } `}
             onClick={() => {
               handleDayClick(day);
             }}

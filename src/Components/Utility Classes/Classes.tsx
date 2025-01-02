@@ -53,17 +53,20 @@ export class Employee {
 
 export class AbsenceType {
   type: string;
-  setFunc: React.Dispatch<React.SetStateAction<Set<number>>>;
+  setFunc: React.Dispatch<React.SetStateAction<number[]>>;
   color: string;
+  days: number[]; // Array of numbers to track selected days
 
   constructor(
     type: string,
-    setFunc: React.Dispatch<React.SetStateAction<Set<number>>>,
-    color: string
+    setFunc: React.Dispatch<React.SetStateAction<number[]>>,
+    color: string,
+    days: number[] // Pass the array of days directly
   ) {
     this.type = type;
     this.setFunc = setFunc;
     this.color = color;
+    this.days = days;
   }
 }
 

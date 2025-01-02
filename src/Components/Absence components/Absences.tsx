@@ -21,14 +21,29 @@ export default function Absences({
 
   const handleAbsenceClick = (type: AbsenceType) => {
     type.setFunc((prev) => {
-      const updatedSet = new Set(prev); // Create a copy of the current Set
-      selectedDays.forEach((day) => updatedSet.add(day)); // Add numbers from selectedDays to the Set
+      // Create a new array by combining previous days and selectedDays
+      const updatedArray = [...prev, ...selectedDays];
 
-      setSelectedDays([]);
+      // Remove duplicates by using a filter
+      const uniqueArray = updatedArray.filter(
+        (day, index) => updatedArray.indexOf(day) === index
+      );
 
-      return updatedSet; // Return the updated Set
+      return uniqueArray; // Return the updated array without duplicates
     });
+
+    // Remove the selected days from all other absence types
+    absenceTypes.forEach((absenceType) => {
+      if (absenceType !== type) {
+        absenceType.setFunc((prev) =>
+          prev.filter((day) => !selectedDays.includes(day))
+        );
+      }
+    });
+
+    setSelectedDays([]); // Clear selectedDays after use
   };
+
   return (
     <div className="w-[35%] bg-purple-950/70 p-8 flex flex-col gap-10 rounded-lg backdrop-blur-sm">
       <h1 className="text-5xl font-bold self-center">Odsustva</h1>

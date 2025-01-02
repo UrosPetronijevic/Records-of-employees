@@ -21,35 +21,47 @@ export default function App() {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  // Individual state sets
-  const [godisnjiOdmorArr, setGodisnjiOdmorArr] = useState<Set<number>>(
-    new Set()
-  );
-
-  const [placenoOdsustvo, setPlacenoOdsustvo] = useState<Set<number>>(
-    new Set()
-  );
-
-  const [bolovanjeArr, setBolovanjeArr] = useState<Set<number>>(new Set());
-
-  const [drzavniPraznikArr, setDrzavniPraznikArr] = useState<Set<number>>(
-    new Set()
-  );
-
-  const [verskiPraznikArr, setVerskiPraznikArr] = useState<Set<number>>(
-    new Set()
-  );
-
-  const [slavaArr, setSlavaArr] = useState<Set<number>>(new Set());
-
+  // Individual state arrays
+  const [godisnjiOdmorArr, setGodisnjiOdmorArr] = useState<number[]>([]);
+  const [placenoOdsustvoArr, setPlacenoOdsustvoArr] = useState<number[]>([]);
+  const [bolovanjeArr, setBolovanjeArr] = useState<number[]>([]);
+  const [drzavniPraznikArr, setDrzavniPraznikArr] = useState<number[]>([]);
+  const [verskiPraznikArr, setVerskiPraznikArr] = useState<number[]>([]);
+  const [slavaArr, setSlavaArr] = useState<number[]>([]);
   // AbsenceType array
+
   const [absenceTypes, setAbsenceTypes] = useState<AbsenceType[]>([
-    new AbsenceType("Godisnji Odmor", setGodisnjiOdmorArr, "bg-green-500"),
-    new AbsenceType("Placeno odsustvo", setPlacenoOdsustvo, "bg-blue-500"),
-    new AbsenceType("Bolovanje", setBolovanjeArr, "bg-yellow-500"),
-    new AbsenceType("Drzavni praznik", setDrzavniPraznikArr, "bg-red-500"),
-    new AbsenceType("Verski praznik", setVerskiPraznikArr, "bg-purple-500"),
-    new AbsenceType("Slava", setSlavaArr, "bg-orange-500"),
+    new AbsenceType(
+      "Godisnji Odmor",
+      setGodisnjiOdmorArr,
+      "bg-green-500",
+      godisnjiOdmorArr
+    ),
+    new AbsenceType(
+      "Placeno odsustvo",
+      setPlacenoOdsustvoArr,
+      "bg-blue-500",
+      placenoOdsustvoArr
+    ),
+    new AbsenceType(
+      "Bolovanje",
+      setBolovanjeArr,
+      "bg-yellow-500",
+      bolovanjeArr
+    ),
+    new AbsenceType(
+      "Drzavni praznik",
+      setDrzavniPraznikArr,
+      "bg-red-500",
+      drzavniPraznikArr
+    ),
+    new AbsenceType(
+      "Verski praznik",
+      setVerskiPraznikArr,
+      "bg-purple-500",
+      verskiPraznikArr
+    ),
+    new AbsenceType("Slava", setSlavaArr, "bg-orange-500", slavaArr),
   ]);
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +71,18 @@ export default function App() {
   const [newMember, setNewMember] = useState<boolean>(false);
 
   const [absence, setAbsence] = useState<boolean>(false);
+
+  console.log(
+    godisnjiOdmorArr,
+    placenoOdsustvoArr
+
+    // bolovanjeArr,
+    // drzavniPraznikArr,
+    // verskiPraznikArr,
+    // slavaArr
+  );
+
+  const [color, setColor] = useState<string>("white");
 
   return (
     <div className=" font-bold text-slate-700">
@@ -95,6 +119,8 @@ export default function App() {
           setAbsenceTypes={setAbsenceTypes}
           selectedDays={selectedDays}
           setSelectedDays={setSelectedDays}
+          // color={color}
+          // setColor={setColor}
         />
       )}
       {newMember && (
